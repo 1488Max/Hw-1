@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MainShopTest {
 
     @Test()
-    void calculateTotalCost(String asdf) throws WrongInputException {
+    void calculateTotalCost() throws WrongInputException {
         double actual = new MainShop().calculateTotalCost("ABDC");
         double expected = 7.25;
         Assertions.assertEquals(actual, expected);
