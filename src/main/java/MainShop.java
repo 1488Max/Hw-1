@@ -52,9 +52,6 @@ public class MainShop {
 
 
     }
-
-    public static void main(String[] args) throws WrongInputException {
-        System.out.println("new MainShop().calculateTotalCost(\"I\") = " + new MainShop().calculateTotalCost("I"));
-    }
+    
 
 }
