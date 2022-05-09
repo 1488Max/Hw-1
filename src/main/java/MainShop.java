@@ -12,12 +12,12 @@ public class MainShop {
         if (product.getAmountOfSale() <= amountOfProduct && product.getAmountOfSale() != 0) {
             //please extract such calculations in separate private method with a meaningful name
             //and use more () to group the expressions
-            return (amountOfProduct / product.getAmountOfSale()) * product.getSalePrice() +
-                    (amountOfProduct % product.getAmountOfSale()) * product.getPrice();
+            return ((amountOfProduct / product.getAmountOfSale()) * (product.getSalePrice())) +
+                    ((amountOfProduct % product.getAmountOfSale()) * (product.getPrice()));
         } else return amountOfProduct * product.getPrice();
     }
 
-    public double calculateTotalCost(String basket) {
+    public  double calculateTotalCost(String basket) throws WrongInputException {
         char[] chars = new char[basket.length()];
         int counterA = 0;
         int counterB = 0;
@@ -40,6 +40,10 @@ public class MainShop {
                 case ('D'):
                     counterD++;
                     break;
+                default:
+                    throw new WrongInputException("Wrong input");
+
+
                     //any default section? What should we do if the input will be not one of the 4 cases?
             }
         }
@@ -47,6 +51,10 @@ public class MainShop {
                 getPriceBySale(counterD, D);
 
 
+    }
+
+    public static void main(String[] args) throws WrongInputException {
+        System.out.println("new MainShop().calculateTotalCost(\"I\") = " + new MainShop().calculateTotalCost("I"));
     }
 
 }

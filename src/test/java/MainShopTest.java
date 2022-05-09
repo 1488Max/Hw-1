@@ -1,24 +1,28 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainShopTest {
 
-    @Test
-    void calculateTotalCost() {
+    @Test()
+    void calculateTotalCost(String asdf) throws WrongInputException {
         double actual = new MainShop().calculateTotalCost("ABDC");
         double expected = 7.25;
-        Assertions.assertEquals(actual,expected);
-        // one test should contain one test case. Create a separate method for this one
-        double actual2 = new MainShop().calculateTotalCost("ABCDABCDABCDABCDABCDABCD");
-        double expected2 = 41;
-        Assertions.assertEquals(actual2,expected2);
-
+        Assertions.assertEquals(actual, expected);
         //also we have to test some invalid scenario
+
+    }
+    @Test
+    void test_exception() {
+
+        WrongInputException exception = assertThrows(
+                WrongInputException.class,
+                () -> new MainShop().calculateTotalCost("I"));
+
+
+        assertTrue(exception.getMessage().contains("input"));
 
     }
 }

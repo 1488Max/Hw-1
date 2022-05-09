@@ -1,4 +1,6 @@
 Product.java
  Product
+WrongInputException.java
+ WrongInputException
 MainShop.java
  MainShop
