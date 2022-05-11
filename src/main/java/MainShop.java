@@ -6,15 +6,23 @@ public class MainShop {
     public Product B = new Product(0, 4.25, 0);
     public Product C = new Product(6, 1, 5);
     public Product D = new Product(0, 0.75, 0);
+    private double countSalePrice(int amountOfProduct, Product product){
+        return ((amountOfProduct / product.getAmountOfSale()) * (product.getSalePrice())) +
+                ((amountOfProduct % product.getAmountOfSale()) * (product.getPrice()));
+    }
+    private double countPriceWithoutSale(int amountOfProduct,Product product){
+        return amountOfProduct * product.getPrice();
+    }
 
-    public double getPriceBySale(int amountOfProduct, Product product) {
+    private double getPrice(int amountOfProduct, Product product) {
 
         if (product.getAmountOfSale() <= amountOfProduct && product.getAmountOfSale() != 0) {
+            countSalePrice(amountOfProduct, product);
             //please extract such calculations in separate private method with a meaningful name
             //and use more () to group the expressions
-            return ((amountOfProduct / product.getAmountOfSale()) * (product.getSalePrice())) +
-                    ((amountOfProduct % product.getAmountOfSale()) * (product.getPrice()));
-        } else return amountOfProduct * product.getPrice();
+
+        }
+        else countPriceWithoutSale(amountOfProduct, product);
     }
 
     public  double calculateTotalCost(String basket) throws WrongInputException {
@@ -47,8 +55,8 @@ public class MainShop {
                     //any default section? What should we do if the input will be not one of the 4 cases?
             }
         }
-        return getPriceBySale(counterA, A) + getPriceBySale(counterB, B) + getPriceBySale(counterC, C) +
-                getPriceBySale(counterD, D);
+        return getPrice(counterA, A) + getPrice(counterB, B) + getPrice(counterC, C) +
+                getPrice(counterD, D);
 
 
     }
