@@ -6,26 +6,28 @@ public class MainShop {
     public Product B = new Product(0, 4.25, 0);
     public Product C = new Product(6, 1, 5);
     public Product D = new Product(0, 0.75, 0);
-    private double countSalePrice(int amountOfProduct, Product product){
+
+    private double countSalePrice(int amountOfProduct, Product product) {
         return ((amountOfProduct / product.getAmountOfSale()) * (product.getSalePrice())) +
                 ((amountOfProduct % product.getAmountOfSale()) * (product.getPrice()));
     }
-    private double countPriceWithoutSale(int amountOfProduct,Product product){
+
+    private double countPriceWithoutSale(int amountOfProduct, Product product) {
         return amountOfProduct * product.getPrice();
     }
 
     private double getPrice(int amountOfProduct, Product product) {
 
         if (product.getAmountOfSale() <= amountOfProduct && product.getAmountOfSale() != 0) {
-            countSalePrice(amountOfProduct, product);
+            return countSalePrice(amountOfProduct, product);
             //please extract such calculations in separate private method with a meaningful name
             //and use more () to group the expressions
 
-        }
-        else countPriceWithoutSale(amountOfProduct, product);
+        } else return countPriceWithoutSale(amountOfProduct, product);
+
     }
 
-    public  double calculateTotalCost(String basket) throws WrongInputException {
+    public double calculateTotalCost(String basket) throws WrongInputException {
         char[] chars = new char[basket.length()];
         int counterA = 0;
         int counterB = 0;
